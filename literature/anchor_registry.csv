@@ -1,0 +1,4 @@
+anchor_id,historical_fact_qualitative,source,intended_use
+A-01,"Operating Reactivity Margin (ORM) had fallen below the regulatory minimum before the test began",B1 / B9 / INSAG-7,case-study plausibility check only (Steps 6 and 4/Phase 9) - NOT a numeric calibration target
+A-02,"An iodine pit (xenon transient following a power reduction) was present at the time of the test",B1 / B4 / INSAG-7,case-study plausibility check only - NOT a numeric calibration target
+A-03,"In the final seconds, void-driven positive reactivity insertion dominated the power excursion",B6 / B8 / INSAG-7,case-study plausibility check only - NOT a numeric calibration target

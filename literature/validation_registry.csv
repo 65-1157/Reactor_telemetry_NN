@@ -1,0 +1,5 @@
+validation_id,test,expected_behavior,source,notes
+V01,Xenon buildup after power increase,Delayed power recovery (iodine pit),B4,generic point-kinetics/Xe-I physics check - independent of Chernobyl case study
+V02,Positive void insertion,Positive power response,B8,generic RBMK-class physics check - independent of Chernobyl case study
+V03,Control rod insertion (no positive-scram transient modeled),Negative reactivity response,B2,generic point-kinetics physics check
+V04,AZ-5 / positive-scram / graphite-displacer transient,NOT MODELED - explicitly out of scope,LIMITATIONS.md Section 7,recorded as a deliberate scope decision, not an omission
