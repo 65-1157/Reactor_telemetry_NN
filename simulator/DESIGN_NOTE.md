@@ -212,24 +212,34 @@ B2/B3), per the Variable Registry note.
 | Total delayed-neutron fraction | beta | approx 0.00645 (see 6.1) | Lamarsh/Keepin thermal U-235; depends on Section 4 decision | PROVISIONAL (textbook standard) |
 | Group fractions | beta_1..beta_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | PROVISIONAL (textbook standard) |
 | Group decay constants | lambda_1..lambda_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | PROVISIONAL (textbook standard) |
-| Prompt neutron generation time | Lambda | order 1e-3 s (graphite-moderated reactors are reported in the ~1e-3 s range, vs. ~1e-4 to 1e-5 s for LWRs) | General reactor-physics reference; exact value TBD from B3 | TBD (RBMK-specific) |
-| I-135 decay constant | lambda_I | approx 2.9e-5 s^-1 (half-life approx 6.6 h) | Standard nuclear data | PROVISIONAL (textbook standard) |
-| Xe-135 decay constant | lambda_Xe | approx 2.1e-5 s^-1 (half-life approx 9.1 h) | Standard nuclear data | PROVISIONAL (textbook standard) |
-| I-135 cumulative fission yield | gamma_I | order 0.06 (approx 6% per fission, thermal U-235) | Standard nuclear data; confirm against B4's specific value | PROVISIONAL (textbook standard) |
-| Xe-135 direct fission yield | gamma_Xe | order 0.003 (approx 0.3% per fission - most Xe-135 arises via I-135 decay, not direct yield) | Standard nuclear data; confirm against B4's specific value | PROVISIONAL (textbook standard) |
-| Xe-135 thermal absorption cross-section | sigma_Xe | order 1e6 barns (Xe-135 has an unusually large thermal absorption cross-section, commonly cited around 2-3 million barns) | Standard nuclear data; confirm against B4's specific value and units convention | PROVISIONAL (textbook standard) |
-| Void reactivity coefficient | alpha_void | TBD (sign: POSITIVE). Candidate magnitudes from Variable Registry: approx 0.03 (B8, approx 0.3 mk per pct void, higher near core axis) vs. commonly cited pre-accident approx 4.7*beta, post-modification approx 0.7*beta (B9) | B8, cross-check B9 - units/conventions differ between sources and must be reconciled, not averaged | TBD (RBMK-specific) - highest scrutiny |
-| Doppler reactivity coefficient | alpha_doppler | TBD | B3 (structural form only - magnitude is for a gas-cooled reference design and is NOT assumed to transfer to graphite/RBMK) | TBD (RBMK-specific) |
-| Fuel temperature time constant | tau_fuel | TBD | TBD | TBD (RBMK-specific) |
+| Prompt neutron generation time | Lambda | approx 1e-3 s (graphite-moderated reactors; literature consistently reports ~1e-3 s vs ~1e-4 to 1e-5 s for LWRs). Exact RBMK-1000 value TBD from B3 | ScienceDirect Topics review on prompt neutron lifetime (consistent with general graphite-moderator physics); confirm against B3 | PROVISIONAL (order-of-magnitude from general graphite-moderator physics; exact value TBD from B3) |
+| I-135 decay constant | lambda_I | 2.90e-5 s^-1 (half-life approx 6.6 h) | B4 (Table 1, TRIGA Mark II Vienna kinetics paper, arXiv:1307.7670) | PROVISIONAL — confirmed against B4 |
+| Xe-135 decay constant | lambda_Xe | 2.10e-5 s^-1 (half-life approx 9.1 h) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
+| I-135 cumulative fission yield | gamma_I | 3.03e-2 per fission (thermal U-235) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
+| Xe-135 direct fission yield | gamma_Xe | NOTE: B4 uses a three-step I/Xe chain (via Sb-135 and Te-135), not a simple two-step model. Sb-135 yield: 1.50e-3; Te-135 yield: 3.13e-2. The direct Xe-135 yield from fission is negligible relative to the I-135 decay path — confirm whether Section 2.3 needs to be expanded to the three-step chain or approximated as two-step | B4 (Table 1, same source) | PROVISIONAL — confirmed values but chain model may need to be revised from two-step to three-step to match B4 exactly (flag for Step 4) |
+| Xe-135 thermal absorption cross-section | sigma_Xe | 2.50e-19 cm^2 (= approx 2.5 million barns) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
+| Void reactivity coefficient | alpha_void | +2500 pcm (total void, i.e. 100% void fraction) at the conditions just before the Chernobyl accident. Expressed as a coefficient: alpha_void approx +25 pcm per % void fraction (linear approximation over the full range). Doppler coefficient: -1000 pcm total (also cited in same source). NOTE: these magnitudes are cited in EPJ Nuclear Sci. Technol. 9 (2023) 28, DOI 10.1051/epjn/2023017, referencing GRS-121 (The accident and the safety of RBMK-Reactors, 1996). They represent the pre-accident core configuration at low ORM — NOT a general RBMK-class value. Cross-check against B8/B9 REQUIRED before FROZEN | EPJ-N 2023 paper (Mercier & Borysenko, open access, peer-reviewed), citing GRS-121 | PROVISIONAL — sourced from peer-reviewed open-access paper with clear provenance; NOT YET cross-checked against B8/B9; NOT FROZEN |
+| Doppler reactivity coefficient | alpha_doppler | -1000 pcm total (cited alongside void coefficient in same source; implies alpha_doppler approx proportional to power — see note in Section 2.5) | EPJ-N 2023 (same source as alpha_void) | PROVISIONAL — same caveats as alpha_void; NOT FROZEN |
+| Fuel temperature time constant | tau_fuel | TBD | No citable source identified in this pass | TBD (RBMK-specific) |
 
-**Note on alpha_void**: B8's figure (approx 0.03) and B9's figure (approx
-4.7*beta pre-accident) are given in different unit conventions (a fractional
-reactivity-per-void-fraction term vs. a multiple of beta) and are **not**
-straightforwardly the same quantity expressed two ways - reconciling these
-into a single consistent `alpha_void` for Section 2.4 is itself a Step 4
-task, not a simple unit conversion to be done casually. Until reconciled,
-this row stays TBD regardless of how plausible either individual figure
-looks in isolation.
+**Note on alpha_void and alpha_doppler**: Values sourced from Mercier &
+Borysenko, EPJ Nuclear Sci. Technol. 9 (2023) 28 (open access, peer-reviewed,
+DOI 10.1051/epjn/2023017), which cites GRS-121 (The accident and the safety
+of RBMK-Reactors, 1996). These represent the pre-accident core configuration
+at low ORM — they are condition-specific, not general RBMK-class constants.
+Cross-check against B8/B9 is still required before FROZEN. The
+EPJ-N 2023 paper is an additional citable peer-reviewed source that can be
+added to the Source Registry as B-NEW-1.
+
+**Note on gamma_Xe / Xe chain model**: B4 (the TRIGA Mark II Vienna kinetics
+paper) uses a three-step decay chain (Sb-135 -> Te-135 -> I-135 -> Xe-135)
+rather than the simplified two-step chain (I-135 -> Xe-135) written in
+Section 2.3. Step 4 must decide whether to implement the three-step chain
+(closer to B4's derivation) or retain the two-step approximation with an
+explicit note. This is a low-risk modeling choice — the Sb-135 and Te-135
+intermediate steps are fast relative to the iodine decay and are commonly
+collapsed — but it must be a stated decision, not an undocumented
+simplification.
 
 ## 7. Mapping to Validation Registry
 
@@ -247,29 +257,23 @@ V01–V03 (V04 is a negative check — confirming absence, not presence).
 
 | Date | Change | Justification | Logged by |
 |---|---|---|---|
-| (this draft) | Initial structural draft, v0.1 | N/A — first pass | — |
-| (this draft, rev. 1) | Section 6 populated with PROVISIONAL standard textbook values for six-group delayed-neutron data, lambda_I, lambda_Xe, gamma_I, gamma_Xe, sigma_Xe, and an order-of-magnitude placeholder for Lambda. alpha_void, alpha_doppler, tau_fuel remain TBD (RBMK-specific). | Standard, widely-reproduced reactor-physics reference values (Lamarsh/Keepin) — used as a documented starting point pending Step 4 confirmation against B2/B3/B4. No RBMK-specific or Chernobyl-specific values introduced. | — |
+| draft v0.1 | Initial structural draft | N/A — first pass | — |
+| draft v0.1 rev.1 | Section 6 populated with PROVISIONAL textbook-standard values for six-group DN data, lambda_I/Xe, gamma_I/Xe, sigma_Xe (order-of-magnitude). alpha_void/alpha_doppler/Lambda/tau_fuel remained TBD | Lamarsh/Keepin standard references | — |
+| draft v0.1 rev.2 | lambda_I, lambda_Xe confirmed against B4 directly. gamma_I confirmed against B4. sigma_Xe confirmed against B4 (2.50e-19 cm^2). alpha_void and alpha_doppler given provisional values from EPJ-N 2023 peer-reviewed open-access paper (Mercier & Borysenko, DOI 10.1051/epjn/2023017, citing GRS-121). Three-step Xe chain issue flagged (B4 uses Sb->Te->I->Xe, not two-step I->Xe). Lambda order-of-magnitude confirmed as ~1e-3 s from graphite-moderator physics literature; exact B3 value still TBD. tau_fuel still TBD. | Search-based literature pass on accessible open sources | — |
 
 ---
 
 ## Open items for Phase 4 / Step 4 sanity check
 
-1. Resolve Section 4 (delayed-neutron fraction reconciliation) — recommend
-   Option 1, using the Section 6.1 table as the fresh-fuel approximation.
-2. Confirm whether B2 and/or B3 reproduce the Section 6.1 table directly or
-   specify a variant; if a variant, use it consistently (no mixing).
-3. Read B3 directly to replace the order-of-magnitude `Lambda` placeholder
-   with a specific graphite-moderated value.
-4. Read B4 directly to confirm `gamma_I`, `gamma_Xe`, `sigma_Xe` against the
-   PROVISIONAL standard values and units convention used in Section 2.3.
-5. **Read B8 and B9 directly to resolve `alpha_void`** — this is the
-   highest-scrutiny item. The two candidate figures use different unit
-   conventions and must be reconciled into one consistent value for
-   Section 2.4, not averaged or guessed.
-6. Read B3 to determine whether its `alpha_doppler` structural form can be
-   adapted with an RBMK-appropriate magnitude, or whether an alternative
-   graphite-specific source is needed.
-7. Confirm numerical scheme (Section 5) is adequate for the stiffness
-   introduced by the chosen `alpha_void` magnitude, once resolved.
-8. Confirm no scenario construction in Section 3 can represent the AZ-5
-   transient (V04).
+**Resolved in this pass (still need Step 4 confirmation, not independent judgment):**
+- lambda_I, lambda_Xe, gamma_I, sigma_Xe — confirmed against B4 directly
+- alpha_void, alpha_doppler — provisional values from EPJ-N 2023 peer-reviewed source
+
+**Still open:**
+1. Resolve Section 4 (DN fraction reconciliation) — recommend Option 1 (fresh-fuel approximation, Section 6.1 table). Confirm B2/B3 use same or compatible table.
+2. Confirm exact Lambda from B3 (graphite-moderated value; order ~1e-3 s confirmed but exact value needed).
+3. **Xe chain model decision** — two-step (Section 2.3 as written) vs. three-step (as in B4). Low-risk either way but must be a stated choice.
+4. **Cross-check alpha_void and alpha_doppler** against B8/B9 before FROZEN. The EPJ-N 2023 values are condition-specific (pre-accident, low ORM) — confirm they are appropriate for the synthetic scenario range.
+5. Find a citable source for tau_fuel (fuel temperature time constant) — no candidate identified yet.
+6. Add EPJ-N 2023 (Mercier & Borysenko) to the Source Registry as an additional peer-reviewed calibration reference (B-NEW-1).
+7. Confirm no scenario in Section 3 can represent the AZ-5 transient (V04).
