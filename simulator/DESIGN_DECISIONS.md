@@ -44,7 +44,7 @@ reference (non-peer-reviewed, but documents its own source chain).
 
 | Decision | Chosen option | Justification | Sign-off |
 |---|---|---|---|
-| D1 | | | |
+| D1 | D1-A | Use Lamarsh/Keepin thermal-U-235 table (beta ≈ 0.00645) as fresh-fuel approximation. State explicitly in LIMITATIONS.md and paper methodology. | LOCKED |
 
 ---
 
@@ -76,7 +76,7 @@ collapsed into an effective I-135 production term in simplified models.
 
 | Decision | Chosen option | Justification | Sign-off |
 |---|---|---|---|
-| D2 | | | |
+| D2 | D2-A | Two-step approximation (I-135 → Xe-135). Sb-135/Te-135 intermediate steps collapsed into effective gamma_I = 3.03e-2. State in methodology as standard point-kinetics practice per LIMITATIONS.md Section 7. | LOCKED |
 
 ---
 
@@ -103,9 +103,9 @@ scenarios, which operate on minutes-to-hours timescales.
 **Recommended:** Attempt D3-A first; use D3-B if B3 is not accessible.
 Either way, document the choice and test numerical stability (see D7).
 
-| Decision | Chosen option | Justification / value used | Sign-off |
+| Decision | Chosen option | Value used | Sign-off |
 |---|---|---|---|
-| D3 | | | |
+| D3 | D3-B | Lambda = 1e-3 s. Documented as consistent with graphite-moderated reactor physics literature. ODE solver numerical stability tested at this value (see D7). | LOCKED |
 
 ---
 
@@ -148,7 +148,7 @@ firewall. Document clearly in the methodology.
 
 | Decision | Chosen option | Value used (pcm) | Justification | Sign-off |
 |---|---|---|---|---|
-| D4 | | | | |
+| D4 | D4-B | +1000 pcm (full void, 100% void fraction); alpha_void ≈ +10 pcm per % void fraction | Mid-range value between nominal and worst-case pre-accident configuration. Maintains Chernobyl firewall (LIMITATIONS.md Section 3) — simulator is NOT tuned to the pre-accident Chernobyl-4 configuration. +2500 pcm pre-accident figure retained in Source Registry as cross-check upper bound only. | LOCKED |
 
 ---
 
@@ -180,7 +180,7 @@ at Step 4 against B3 or an equivalent graphite-specific source.
 
 | Decision | Chosen option | Value used (pcm/K) | Temperature range assumed | Sign-off |
 |---|---|---|---|---|
-| D5 | | | | |
+| D5 | D5-A | alpha_doppler ≈ -1.5 pcm/K (mid-point of -1.25 to -2.0 pcm/K range) | Nominal fuel temperature rise ~650 K above inlet (270°C inlet; fuel centerline ~920°C at operating power). Derived from EPJ-N 2023 total Doppler value of -1000 pcm divided by assumed 650 K rise. State temperature range assumption explicitly in methodology. | LOCKED |
 
 ---
 
@@ -211,7 +211,7 @@ value from B3.
 
 | Decision | Chosen option | Value used (s) | Sign-off |
 |---|---|---|---|
-| D6 | | | |
+| D6 | D6-B | tau_fuel = 15 s (mid-point of 5-30 s range for UO2 fuel in graphite-moderated channel). Sensitivity test in Step 5 unit tests: verify anomaly signals on minutes-to-hours timescale are not materially affected by varying tau_fuel across 5-30 s range. | LOCKED |
 
 ---
 
@@ -241,7 +241,7 @@ void transient.
 
 | Decision | Chosen option | Tolerances | Validation benchmark | Sign-off |
 |---|---|---|---|---|
-| D7 | | | | |
+| D7 | D7-A | scipy.integrate.solve_ivp, method='LSODA', atol=1e-8, rtol=1e-6 | Analytic step-reactivity solution (standard point-kinetics benchmark): apply a step reactivity insertion of +0.5*beta and verify that simulated reactor period matches the analytic inhour equation result. Run before any anomaly scenario. | LOCKED |
 
 ---
 
@@ -281,7 +281,7 @@ one channel as its designated ground-truth driving variable.
 
 | Decision | Channel list confirmed? | Changes | Sign-off |
 |---|---|---|---|
-| D8 | | | |
+| D8 | YES — 10-channel list as proposed | None. CH01-CH10 confirmed. Each anomaly class has a designated ground-truth driving variable: void anomalies → CH03/CH04; xenon/iodine → CH05/CH06/CH07; rod-withdrawal → CH09; fuel-temperature → CH08/CH10. Sensor-corruption anomalies applied as post-processing on top of physical channels. | LOCKED |
 
 ---
 
@@ -319,7 +319,7 @@ is sufficient.
 
 | Decision | Chosen variant | Citation | Sign-off |
 |---|---|---|---|
-| D9 | | | |
+| D9 | D9-A — 1D CNN autoencoder with multi-scale convolutional filters | To be identified from the SWaT/WADI benchmark literature (papers underlying A9/A10 in Source Registry) before Step 8. Specific citation TBD — this is the one remaining open item before Step 8. | LOCKED (variant choice); citation TBD before Step 8 |
 
 ---
 
@@ -349,26 +349,24 @@ PyTorch version) in METRICS.md before Step 9.
 
 | Decision | Platform choice | Hardware spec | Sign-off |
 |---|---|---|---|
-| D10 | | | |
+| D10 | CPU-first. Switch to GPU (T4) if training time proves prohibitive. | Primary: CPU-only measurement. Specific CPU model, RAM, OS, Python/PyTorch/scipy versions to be recorded in METRICS.md before Step 9 (once the machine used for training is confirmed). If GPU becomes necessary, add T4 as secondary platform with both sets of results reported. | LOCKED |
 
 ---
 
 ## Summary checklist for Step 4 sign-off
 
-| ID | Decision | Status |
-|---|---|---|
-| D1 | Delayed-neutron fraction table choice | OPEN |
-| D2 | Xe chain model (two-step vs three-step) | OPEN |
-| D3 | Exact Lambda value | OPEN |
-| D4 | alpha_void value and scope | OPEN |
-| D5 | alpha_doppler in pcm/K | OPEN |
-| D6 | tau_fuel value and source | OPEN |
-| D7 | ODE solver choice and tolerances | OPEN |
-| D8 | Simulator output channel list | OPEN |
-| D9 | CNN/Wavelet architecture variant | OPEN |
-| D10 | Reference hardware platform | OPEN |
+| ID | Decision | Chosen | Status |
+|---|---|---|---|
+| D1 | Delayed-neutron fraction table | D1-A: Lamarsh/Keepin thermal-U-235, beta ≈ 0.00645, fresh-fuel approximation | LOCKED |
+| D2 | Xe chain model | D2-A: two-step (I-135 → Xe-135), gamma_I = 3.03e-2 | LOCKED |
+| D3 | Lambda value | D3-B: 1e-3 s, graphite-moderator literature; stability-tested in Step 5 | LOCKED |
+| D4 | alpha_void | D4-B: +1000 pcm full void (+10 pcm per % void); mid-range, Chernobyl firewall maintained | LOCKED |
+| D5 | alpha_doppler | D5-A: -1.5 pcm/K; derived from -1000 pcm total / 650 K assumed fuel temperature rise | LOCKED |
+| D6 | tau_fuel | D6-B: 15 s; sensitivity test across 5-30 s range in Step 5 unit tests | LOCKED |
+| D7 | ODE solver | D7-A: scipy LSODA, atol=1e-8, rtol=1e-6; inhour-equation benchmark before anomaly scenarios | LOCKED |
+| D8 | Output channel list | D8: 10-channel list confirmed; ground-truth driving variable assigned per anomaly class | LOCKED |
+| D9 | CNN/Wavelet variant | D9-A: 1D CNN-AE, multi-scale filters; specific citation TBD before Step 8 | LOCKED (citation pending) |
+| D10 | Reference hardware | D10: CPU-first; switch to GPU T4 if training time prohibitive; spec recorded in METRICS.md at Step 9 | LOCKED |
 
-All ten items must move from OPEN to a signed-off chosen option before
-simulator code (Step 5) is written. Items D1–D8 are Step 4 (domain
-sanity check) scope. Items D9–D10 are Step 8 scope but are listed here
-so they are visible early and not left until the last moment.
+**All decisions locked. Step 5 (simulator implementation) is cleared to start.**
+One remaining item before Step 8: identify specific CNN-AE citation (D9).

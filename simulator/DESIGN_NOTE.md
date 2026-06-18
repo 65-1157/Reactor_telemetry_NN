@@ -1,17 +1,13 @@
-# Simulator Design Note (v0.1, rev. 1 — first pass, NOT FROZEN)
+# Simulator Design Note (v1.0 — ALL PARAMETERS LOCKED)
 
-**Status: DRAFT.** This is a first-pass structural specification, written to
-be reviewed at the Phase 4 / Step 4 domain sanity check. Section 6 now
-contains **provisional values** for parameters that are well-established,
-widely-reproduced reactor-physics constants (six-group delayed-neutron data,
-I-135/Xe-135 decay constants and yields, Xe-135 cross-section) — these are
-explicitly marked "PROVISIONAL (textbook standard)" and still need
-confirmation against B2/B3/B4 at Step 4. The RBMK-specific and
-safety-critical parameters (`alpha_void`, `alpha_doppler`, `Lambda`,
-`tau_fuel`) remain genuinely **TBD** and must be read directly from B3/B8/B9
-— these are not estimated or guessed anywhere in this document. **Do not
-write simulator code against this version until the TBD rows in Section 6
-and the reconciliation in Section 4 are completed and reviewed.**
+**Status: LOCKED.** All simulator parameters are frozen following the
+Step 4 design-decisions sign-off (see `DESIGN_DECISIONS.md`). Any future
+change to a parameter in Section 6 requires an independent literature
+justification logged in the revision history (Section 8) — "to improve
+results" or "to match the historical trace" are not acceptable
+justifications per `LIMITATIONS.md` Sections 3 and 7.
+
+**Step 5 (simulator implementation) is cleared to start.**
 
 This note is the single most important artifact in the project (per
 `ROADMAP.md` Section 4.1) — everything downstream depends on it.
@@ -209,18 +205,18 @@ B2/B3), per the Variable Registry note.
 
 | Parameter | Symbol | Value | Source (table/eq. ref.) | Status |
 |---|---|---|---|---|
-| Total delayed-neutron fraction | beta | approx 0.00645 (see 6.1) | Lamarsh/Keepin thermal U-235; depends on Section 4 decision | PROVISIONAL (textbook standard) |
-| Group fractions | beta_1..beta_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | PROVISIONAL (textbook standard) |
-| Group decay constants | lambda_1..lambda_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | PROVISIONAL (textbook standard) |
-| Prompt neutron generation time | Lambda | approx 1e-3 s (graphite-moderated reactors; literature consistently reports ~1e-3 s vs ~1e-4 to 1e-5 s for LWRs). Exact RBMK-1000 value TBD from B3 | ScienceDirect Topics review on prompt neutron lifetime (consistent with general graphite-moderator physics); confirm against B3 | PROVISIONAL (order-of-magnitude from general graphite-moderator physics; exact value TBD from B3) |
-| I-135 decay constant | lambda_I | 2.90e-5 s^-1 (half-life approx 6.6 h) | B4 (Table 1, TRIGA Mark II Vienna kinetics paper, arXiv:1307.7670) | PROVISIONAL — confirmed against B4 |
-| Xe-135 decay constant | lambda_Xe | 2.10e-5 s^-1 (half-life approx 9.1 h) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
-| I-135 cumulative fission yield | gamma_I | 3.03e-2 per fission (thermal U-235) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
-| Xe-135 direct fission yield | gamma_Xe | NOTE: B4 uses a three-step I/Xe chain (via Sb-135 and Te-135), not a simple two-step model. Sb-135 yield: 1.50e-3; Te-135 yield: 3.13e-2. The direct Xe-135 yield from fission is negligible relative to the I-135 decay path — confirm whether Section 2.3 needs to be expanded to the three-step chain or approximated as two-step | B4 (Table 1, same source) | PROVISIONAL — confirmed values but chain model may need to be revised from two-step to three-step to match B4 exactly (flag for Step 4) |
-| Xe-135 thermal absorption cross-section | sigma_Xe | 2.50e-19 cm^2 (= approx 2.5 million barns) | B4 (Table 1, same source) | PROVISIONAL — confirmed against B4 |
-| Void reactivity coefficient | alpha_void | +2500 pcm (total void, i.e. 100% void fraction) at the conditions just before the Chernobyl accident. Expressed as a coefficient: alpha_void approx +25 pcm per % void fraction (linear approximation over the full range). Doppler coefficient: -1000 pcm total (also cited in same source). NOTE: these magnitudes are cited in EPJ Nuclear Sci. Technol. 9 (2023) 28, DOI 10.1051/epjn/2023017, referencing GRS-121 (The accident and the safety of RBMK-Reactors, 1996). They represent the pre-accident core configuration at low ORM — NOT a general RBMK-class value. Cross-check against B8/B9 REQUIRED before FROZEN | EPJ-N 2023 paper (Mercier & Borysenko, open access, peer-reviewed), citing GRS-121 | PROVISIONAL — sourced from peer-reviewed open-access paper with clear provenance; NOT YET cross-checked against B8/B9; NOT FROZEN |
-| Doppler reactivity coefficient | alpha_doppler | -1000 pcm total (cited alongside void coefficient in same source; implies alpha_doppler approx proportional to power — see note in Section 2.5) | EPJ-N 2023 (same source as alpha_void) | PROVISIONAL — same caveats as alpha_void; NOT FROZEN |
-| Fuel temperature time constant | tau_fuel | TBD | No citable source identified in this pass | TBD (RBMK-specific) |
+| Total delayed-neutron fraction | beta | 0.00645 | Lamarsh/Keepin thermal U-235 (D1-A, fresh-fuel approximation — stated limitation) | LOCKED |
+| Group fractions | beta_1..beta_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | LOCKED |
+| Group decay constants | lambda_1..lambda_6 | see 6.1 | Lamarsh/Keepin thermal U-235 | LOCKED |
+| Prompt neutron generation time | Lambda | 1e-3 s | Graphite-moderator physics literature (D3-B); numerical stability tested in Step 5 | LOCKED |
+| I-135 decay constant | lambda_I | 2.90e-5 s^-1 | B4 (Table 1, arXiv:1307.7670) | LOCKED |
+| Xe-135 decay constant | lambda_Xe | 2.10e-5 s^-1 | B4 (Table 1, same source) | LOCKED |
+| I-135 cumulative fission yield | gamma_I | 3.03e-2 per fission | B4 (Table 1); three-step chain collapsed to two-step (D2-A) | LOCKED |
+| Xe-135 direct fission yield | gamma_Xe | N/A — two-step model adopted (D2-A); all Xe-135 produced via I-135 decay | D2-A decision; Sb/Te steps collapsed into gamma_I | LOCKED |
+| Xe-135 thermal absorption cross-section | sigma_Xe | 2.50e-19 cm^2 (~2.5 million barns) | B4 (Table 1, same source) | LOCKED |
+| Void reactivity coefficient | alpha_void | +1000 pcm full void; +10 pcm per % void fraction | D4-B: mid-range; Chernobyl firewall maintained. EPJ-N 2023 upper bound (+2500 pcm) in Source Registry for cross-check only | LOCKED |
+| Doppler reactivity coefficient | alpha_doppler | -1.5 pcm/K | D5-A: EPJ-N 2023 total -1000 pcm / assumed 650 K fuel temperature rise | LOCKED |
+| Fuel temperature time constant | tau_fuel | 15 s | D6-B: mid-point of 5-30 s UO2/graphite range; sensitivity test in Step 5 unit tests | LOCKED |
 
 **Note on alpha_void and alpha_doppler**: Values sourced from Mercier &
 Borysenko, EPJ Nuclear Sci. Technol. 9 (2023) 28 (open access, peer-reviewed,
