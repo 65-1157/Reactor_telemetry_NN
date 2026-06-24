@@ -1,25 +1,23 @@
 {
   "lstm_ae": {
-    "auroc": 0.5571030640668524,
-    "auprc": 0.9007532170792156,
+    "auroc": 1.0,
+    "auprc": 1.0,
     "param_count": 106122,
-    "latency_ms_median": 2.498899999409332,
-    "total_training_s": 37.1738383769989,
-    "audit_issues": [
-      "class_doppler_drift_not_detected",
-      "class_correlated_void_rod_not_detected"
-    ],
-    "seed": 42,
+    "latency_ms_median": 2.1324130011635134,
+    "total_training_s": 25.76756477355957,
+    "audit_issues": [],
+    "seed": 13,
     "seed_source": "clean"
   },
   "gru_ed": {
-    "auroc": 0.8161559888579387,
-    "auprc": 0.9613494274218508,
+    "auroc": 0.5988857938718662,
+    "auprc": 0.9067726071321334,
     "param_count": 79754,
-    "latency_ms_median": 1.6945944989856798,
-    "total_training_s": 35.473052740097046,
+    "latency_ms_median": 1.6919355002755765,
+    "total_training_s": 35.41254949569702,
     "audit_issues": [
-      "class_xenon_pit_not_detected"
+      "class_xenon_pit_not_detected",
+      "class_doppler_drift_not_detected"
     ],
     "seed": 42,
     "seed_source": "clean"
@@ -28,29 +26,29 @@
     "auroc": 1.0,
     "auprc": 1.0,
     "param_count": 11312148,
-    "latency_ms_median": 0.910666999516252,
-    "total_training_s": 18.101701736450195,
+    "latency_ms_median": 0.9157964996120427,
+    "total_training_s": 5.998780965805054,
     "audit_issues": [],
-    "seed": 42,
+    "seed": 13,
     "seed_source": "clean"
   },
   "tf_ae": {
     "auroc": 0.596100278551532,
-    "auprc": 0.9081557472956345,
+    "auprc": 0.9104089196880827,
     "param_count": 960074,
-    "latency_ms_median": 1.0892219988818397,
-    "total_training_s": 179.83288526535034,
+    "latency_ms_median": 1.1634695001703221,
+    "total_training_s": 178.39287161827087,
     "audit_issues": [
       "poor_separation",
       "class_void_spike_not_detected",
       "class_correlated_void_rod_not_detected"
     ],
-    "seed": 42,
+    "seed": 13,
     "seed_source": "clean"
   },
   "isolation_forest": {
     "auroc": 1.0,
-    "auprc": 1.0,
+    "auprc": 0.9999999999999999,
     "param_count": 0,
     "latency_ms_median": null,
     "total_training_s": null,
