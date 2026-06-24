@@ -1,0 +1,71 @@
+{
+  "lstm_ae": {
+    "auroc": 0.5571030640668524,
+    "auprc": 0.9007532170792156,
+    "param_count": 106122,
+    "latency_ms_median": 2.498899999409332,
+    "total_training_s": 37.1738383769989,
+    "audit_issues": [
+      "class_doppler_drift_not_detected",
+      "class_correlated_void_rod_not_detected"
+    ],
+    "seed": 42,
+    "seed_source": "clean"
+  },
+  "gru_ed": {
+    "auroc": 0.8161559888579387,
+    "auprc": 0.9613494274218508,
+    "param_count": 79754,
+    "latency_ms_median": 1.6945944989856798,
+    "total_training_s": 35.473052740097046,
+    "audit_issues": [
+      "class_xenon_pit_not_detected"
+    ],
+    "seed": 42,
+    "seed_source": "clean"
+  },
+  "usad": {
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "param_count": 11312148,
+    "latency_ms_median": 0.910666999516252,
+    "total_training_s": 18.101701736450195,
+    "audit_issues": [],
+    "seed": 42,
+    "seed_source": "clean"
+  },
+  "tf_ae": {
+    "auroc": 0.596100278551532,
+    "auprc": 0.9081557472956345,
+    "param_count": 960074,
+    "latency_ms_median": 1.0892219988818397,
+    "total_training_s": 179.83288526535034,
+    "audit_issues": [
+      "poor_separation",
+      "class_void_spike_not_detected",
+      "class_correlated_void_rod_not_detected"
+    ],
+    "seed": 42,
+    "seed_source": "clean"
+  },
+  "isolation_forest": {
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "param_count": 0,
+    "latency_ms_median": null,
+    "total_training_s": null,
+    "audit_issues": [],
+    "seed": null,
+    "seed_source": null
+  },
+  "pca": {
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "param_count": 144200,
+    "latency_ms_median": null,
+    "total_training_s": null,
+    "audit_issues": [],
+    "seed": null,
+    "seed_source": null
+  }
+}
