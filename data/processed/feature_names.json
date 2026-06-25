@@ -1,0 +1,12 @@
+[
+  "CH01_power",
+  "CH02_rho_total",
+  "CH03_void_frac",
+  "CH04_rho_void",
+  "CH05_rho_xenon",
+  "CH06_Xe_norm",
+  "CH07_I_norm",
+  "CH08_T_fuel",
+  "CH09_rho_rod",
+  "CH10_rho_doppler"
+]
