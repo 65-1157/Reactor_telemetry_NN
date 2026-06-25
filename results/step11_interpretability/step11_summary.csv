@@ -1,0 +1,5 @@
+Architecture,AUROC,Score inverted,SHAP computed,SHAP shape,Top-1 Acc,Top-3 Acc,Attention extr.
+LSTM-AE,0.5571,False,True,"(300, 721, 10)",0.230,0.967,N/A
+GRU-ED,0.8162,False,True,"(300, 721, 10)",0.217,1.000,N/A
+USAD,1.0,False,True,"(300, 721, 10)",0.613,1.000,N/A
+TF-AE,0.5961,True,True,"(300, 721, 10)",0.267,0.713,Yes
