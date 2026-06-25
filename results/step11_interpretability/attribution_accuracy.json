@@ -1,0 +1,262 @@
+{
+  "LSTM-AE": {
+    "top1_acc": 0.23,
+    "top3_acc": 0.9666666666666667,
+    "n_total": 300,
+    "per_type": {
+      "CH03": {
+        "n": 114,
+        "top1_acc": 0.39473684210526316,
+        "top3_acc": 0.9824561403508771,
+        "gt_top1": "CH04_rho_void",
+        "gt_top3": [
+          "CH04_rho_void",
+          "CH03_void_frac",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH04_rho_void": 45,
+          "CH02_rho_total": 2,
+          "CH03_void_frac": 67
+        }
+      },
+      "CH05": {
+        "n": 57,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH06_Xe_norm",
+        "gt_top3": [
+          "CH06_Xe_norm",
+          "CH07_I_norm",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH07_I_norm": 57
+        }
+      },
+      "CH08": {
+        "n": 70,
+        "top1_acc": 0.34285714285714286,
+        "top3_acc": 0.8857142857142857,
+        "gt_top1": "CH09_rho_rod",
+        "gt_top3": [
+          "CH09_rho_rod",
+          "CH01_power",
+          "CH10_rho_doppler"
+        ],
+        "pred_top1_counts": {
+          "CH01_power": 38,
+          "CH09_rho_rod": 24,
+          "CH06_Xe_norm": 7,
+          "CH08_T_fuel": 1
+        }
+      },
+      "CH09": {
+        "n": 59,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH10_rho_doppler",
+        "gt_top3": [
+          "CH10_rho_doppler",
+          "CH02_rho_total",
+          "CH08_T_fuel"
+        ],
+        "pred_top1_counts": {
+          "CH02_rho_total": 59
+        }
+      }
+    }
+  },
+  "GRU-ED": {
+    "top1_acc": 0.21666666666666667,
+    "top3_acc": 1.0,
+    "n_total": 300,
+    "per_type": {
+      "CH03": {
+        "n": 114,
+        "top1_acc": 0.5701754385964912,
+        "top3_acc": 1.0,
+        "gt_top1": "CH04_rho_void",
+        "gt_top3": [
+          "CH04_rho_void",
+          "CH03_void_frac",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH04_rho_void": 65,
+          "CH03_void_frac": 49
+        }
+      },
+      "CH05": {
+        "n": 57,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH06_Xe_norm",
+        "gt_top3": [
+          "CH06_Xe_norm",
+          "CH07_I_norm",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH07_I_norm": 57
+        }
+      },
+      "CH08": {
+        "n": 70,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH09_rho_rod",
+        "gt_top3": [
+          "CH09_rho_rod",
+          "CH01_power",
+          "CH10_rho_doppler"
+        ],
+        "pred_top1_counts": {
+          "CH10_rho_doppler": 70
+        }
+      },
+      "CH09": {
+        "n": 59,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH10_rho_doppler",
+        "gt_top3": [
+          "CH10_rho_doppler",
+          "CH02_rho_total",
+          "CH08_T_fuel"
+        ],
+        "pred_top1_counts": {
+          "CH02_rho_total": 59
+        }
+      }
+    }
+  },
+  "USAD": {
+    "top1_acc": 0.6133333333333333,
+    "top3_acc": 1.0,
+    "n_total": 300,
+    "per_type": {
+      "CH03": {
+        "n": 114,
+        "top1_acc": 1.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH04_rho_void",
+        "gt_top3": [
+          "CH04_rho_void",
+          "CH03_void_frac",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH04_rho_void": 114
+        }
+      },
+      "CH05": {
+        "n": 57,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH06_Xe_norm",
+        "gt_top3": [
+          "CH06_Xe_norm",
+          "CH07_I_norm",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH07_I_norm": 57
+        }
+      },
+      "CH08": {
+        "n": 70,
+        "top1_acc": 1.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH09_rho_rod",
+        "gt_top3": [
+          "CH09_rho_rod",
+          "CH01_power",
+          "CH10_rho_doppler"
+        ],
+        "pred_top1_counts": {
+          "CH09_rho_rod": 70
+        }
+      },
+      "CH09": {
+        "n": 59,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH10_rho_doppler",
+        "gt_top3": [
+          "CH10_rho_doppler",
+          "CH02_rho_total",
+          "CH08_T_fuel"
+        ],
+        "pred_top1_counts": {
+          "CH02_rho_total": 59
+        }
+      }
+    }
+  },
+  "TF-AE": {
+    "top1_acc": 0.26666666666666666,
+    "top3_acc": 0.7133333333333334,
+    "n_total": 300,
+    "per_type": {
+      "CH03": {
+        "n": 114,
+        "top1_acc": 0.7017543859649122,
+        "top3_acc": 0.7017543859649122,
+        "gt_top1": "CH04_rho_void",
+        "gt_top3": [
+          "CH04_rho_void",
+          "CH03_void_frac",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH04_rho_void": 80,
+          "CH02_rho_total": 34
+        }
+      },
+      "CH05": {
+        "n": 57,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH06_Xe_norm",
+        "gt_top3": [
+          "CH06_Xe_norm",
+          "CH07_I_norm",
+          "CH01_power"
+        ],
+        "pred_top1_counts": {
+          "CH07_I_norm": 57
+        }
+      },
+      "CH08": {
+        "n": 70,
+        "top1_acc": 0.0,
+        "top3_acc": 0.2571428571428571,
+        "gt_top1": "CH09_rho_rod",
+        "gt_top3": [
+          "CH09_rho_rod",
+          "CH01_power",
+          "CH10_rho_doppler"
+        ],
+        "pred_top1_counts": {
+          "CH01_power": 18,
+          "CH07_I_norm": 52
+        }
+      },
+      "CH09": {
+        "n": 59,
+        "top1_acc": 0.0,
+        "top3_acc": 1.0,
+        "gt_top1": "CH10_rho_doppler",
+        "gt_top3": [
+          "CH10_rho_doppler",
+          "CH02_rho_total",
+          "CH08_T_fuel"
+        ],
+        "pred_top1_counts": {
+          "CH02_rho_total": 59
+        }
+      }
+    }
+  }
+}
