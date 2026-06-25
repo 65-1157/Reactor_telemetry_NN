@@ -1,0 +1,38 @@
+{
+  "CH03": {
+    "top1": "CH04_rho_void",
+    "top3": [
+      "CH04_rho_void",
+      "CH03_void_frac",
+      "CH01_power"
+    ]
+  },
+  "CH05": {
+    "top1": "CH06_Xe_norm",
+    "top3": [
+      "CH06_Xe_norm",
+      "CH07_I_norm",
+      "CH01_power"
+    ]
+  },
+  "CH08": {
+    "top1": "CH09_rho_rod",
+    "top3": [
+      "CH09_rho_rod",
+      "CH01_power",
+      "CH10_rho_doppler"
+    ]
+  },
+  "CH09": {
+    "top1": "CH10_rho_doppler",
+    "top3": [
+      "CH10_rho_doppler",
+      "CH02_rho_total",
+      "CH08_T_fuel"
+    ]
+  },
+  "norm": {
+    "top1": null,
+    "top3": []
+  }
+}
