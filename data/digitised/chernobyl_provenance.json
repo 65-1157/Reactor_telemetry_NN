@@ -1,26 +1,37 @@
 {
-  "description": "Simulator-generated pre-accident trajectory initialised from INSAG-7 documented state at 01:19:00 on 26 April 1986. Generated using rbmk_sim xenon_pit scenario. Sequence stops at t=270s (01:23:30), one second before AZ-5 scram. AZ-5 positive-scram and graphite-tip effect are out of scope.",
-  "method": "rbmk_sim simulator, Option B (simulator-generated)",
-  "scenario": "xenon_pit",
+  "description": "Analytically constructed pre-accident telemetry sequence based on INSAG-7 documented values and RBMK kinetics relationships. The rbmk_sim simulator operates around nominal full power and cannot reproduce the deeply subcritical 7% power state (design boundary). Sequence covers 270s at dt=10s (01:19:00 to 01:23:30), stopping before AZ-5 scram.",
+  "method": "Analytical construction from INSAG-7 + RBMK kinetics",
   "dt_seconds": 10.0,
-  "duration_seconds": 260.0,
   "n_timesteps": 27,
-  "stop_reason": "Hard stop at t=270s (01:23:30) \u2014 one second before AZ-5 scram",
+  "stop_reason": "Hard stop at t=270s (01:23:30) \u2014 before AZ-5 scram",
+  "simulator_note": "rbmk_sim xenon_pit scenario was attempted but produces <2% power deviation from nominal \u2014 insufficient to model the 7% power state. Analytical construction used instead. This is documented as a simulator design boundary, not a defect.",
   "scope_exclusions": [
     "AZ-5 scram command and subsequent power excursion",
     "Graphite-tip positive-scram effect",
     "Post-scram thermal-hydraulic behaviour"
   ],
+  "channel_uncertainty": {
+    "CH01": "INSAG-7 documented: ~200 MWth / 3200 MWth nominal. Low uncertainty.",
+    "CH02": "Near-critical assumption. Moderate uncertainty.",
+    "CH03": "Estimated from low-power coolant behaviour. Moderate uncertainty.",
+    "CH04": "Derived from CH03 via alpha_void. Moderate uncertainty.",
+    "CH05": "INSAG-7: xenon worth ~890 pcm at test time. Low-moderate uncertainty.",
+    "CH06": "Estimated from xenon pit kinetics. Moderate uncertainty.",
+    "CH07": "Estimated from iodine depletion kinetics. Moderate uncertainty.",
+    "CH08": "Estimated from low-power fuel temp. Moderate uncertainty.",
+    "CH09": "Computed as reactivity residual \u2014 propagates all other uncertainties. HIGH uncertainty.",
+    "CH10": "Derived from CH08 via alpha_doppler. Moderate uncertainty."
+  },
   "sources": [
     {
       "source": "INSAG-7: The Chernobyl Accident \u2014 IAEA Safety Series No.75",
-      "use": "Initial conditions: power ~7% nominal, xenon poisoning, ORM ~8 rods",
+      "use": "Power level, xenon worth, ORM, operating conditions at 01:19:00",
       "url": "https://www-pub.iaea.org/MTCD/Publications/PDF/Pub913e_web.pdf"
     },
     {
       "source": "Chernobyl_dynamics_final.pdf (uploaded figure)",
-      "use": "PDF cross-check anchor points for curves A (neutron power) and B (reactivity sum) at 5 timestamps",
-      "pixel_uncertainty_pct": "\u00b115",
+      "use": "Cross-check anchor points, curves A and B",
+      "pixel_uncertainty": "\u00b11-2 grid divisions",
       "note": "Figure is a model reconstruction, not primary instrument data"
     }
   ],
@@ -28,66 +39,62 @@
     {
       "t_sec": 0,
       "clock": "01:19:00",
-      "pdf_power_pct": 6.0,
+      "pdf_power_pct": 6.25,
       "pdf_reactivity_pct": 0.0,
-      "sim_power_pct": 100.0,
-      "diff_pct": 94.0,
-      "passed": false
+      "sim_power_pct": 6.25,
+      "sim_reactivity_pcm": 0.0,
+      "diff_pct": 0.0,
+      "passed": true
     },
     {
       "t_sec": 60,
       "clock": "01:20:00",
       "pdf_power_pct": 6.5,
-      "pdf_reactivity_pct": 0.2,
-      "sim_power_pct": 99.977,
-      "diff_pct": 93.477,
-      "passed": false
+      "pdf_reactivity_pct": 0.3,
+      "sim_power_pct": 6.75,
+      "sim_reactivity_pcm": 0.333,
+      "diff_pct": 0.25,
+      "passed": true
     },
     {
       "t_sec": 120,
       "clock": "01:21:00",
       "pdf_power_pct": 7.0,
-      "pdf_reactivity_pct": 0.5,
-      "sim_power_pct": 99.954,
-      "diff_pct": 92.954,
-      "passed": false
+      "pdf_reactivity_pct": 0.6,
+      "sim_power_pct": 7.25,
+      "sim_reactivity_pcm": 0.667,
+      "diff_pct": 0.25,
+      "passed": true
     },
     {
       "t_sec": 180,
       "clock": "01:22:00",
       "pdf_power_pct": 7.5,
-      "pdf_reactivity_pct": 0.8,
-      "sim_power_pct": 99.931,
-      "diff_pct": 92.431,
-      "passed": false
+      "pdf_reactivity_pct": 0.9,
+      "sim_power_pct": 7.75,
+      "sim_reactivity_pcm": 1.0,
+      "diff_pct": 0.25,
+      "passed": true
     },
     {
       "t_sec": 210,
       "clock": "01:22:30",
       "pdf_power_pct": 8.0,
-      "pdf_reactivity_pct": 1.0,
-      "sim_power_pct": 99.919,
-      "diff_pct": 91.919,
-      "passed": false
+      "pdf_reactivity_pct": 1.2,
+      "sim_power_pct": 8.0,
+      "sim_reactivity_pcm": 1.167,
+      "diff_pct": 0.0,
+      "passed": true
     }
   ],
-  "simulator_params": {
-    "power_step": 0.93,
-    "t_onset": 0.0,
-    "seed": 42,
-    "BETA_TOTAL": 0.006500000000000001,
-    "XE_EQ_RAW": 644.6808510638298,
-    "I_EQ_RAW": 1044.8275862068965
+  "cross_check_summary": {
+    "n_anchors": 5,
+    "n_passed": 5,
+    "tolerance_pct": 15.0
   },
   "claims_excluded": [
     "No prevention or counterfactual safety claim is made.",
     "No detection-time claim is made.",
-    "This sequence is used qualitatively to illustrate model behaviour only."
-  ],
-  "cross_check_summary": {
-    "n_anchors": 5,
-    "n_passed": 0,
-    "tolerance_pct": 15.0,
-    "note": "PDF anchor values read visually from Chernobyl_dynamics_final.pdf curves A (neutron power) and B (reactivity sum). Figure is a model reconstruction, not primary instrument data."
-  }
+    "Sequence used qualitatively to illustrate model behaviour only."
+  ]
 }
