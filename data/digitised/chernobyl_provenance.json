@@ -1,0 +1,93 @@
+{
+  "description": "Simulator-generated pre-accident trajectory initialised from INSAG-7 documented state at 01:19:00 on 26 April 1986. Generated using rbmk_sim xenon_pit scenario. Sequence stops at t=270s (01:23:30), one second before AZ-5 scram. AZ-5 positive-scram and graphite-tip effect are out of scope.",
+  "method": "rbmk_sim simulator, Option B (simulator-generated)",
+  "scenario": "xenon_pit",
+  "dt_seconds": 10.0,
+  "duration_seconds": 260.0,
+  "n_timesteps": 27,
+  "stop_reason": "Hard stop at t=270s (01:23:30) \u2014 one second before AZ-5 scram",
+  "scope_exclusions": [
+    "AZ-5 scram command and subsequent power excursion",
+    "Graphite-tip positive-scram effect",
+    "Post-scram thermal-hydraulic behaviour"
+  ],
+  "sources": [
+    {
+      "source": "INSAG-7: The Chernobyl Accident \u2014 IAEA Safety Series No.75",
+      "use": "Initial conditions: power ~7% nominal, xenon poisoning, ORM ~8 rods",
+      "url": "https://www-pub.iaea.org/MTCD/Publications/PDF/Pub913e_web.pdf"
+    },
+    {
+      "source": "Chernobyl_dynamics_final.pdf (uploaded figure)",
+      "use": "PDF cross-check anchor points for curves A (neutron power) and B (reactivity sum) at 5 timestamps",
+      "pixel_uncertainty_pct": "\u00b115",
+      "note": "Figure is a model reconstruction, not primary instrument data"
+    }
+  ],
+  "cross_check": [
+    {
+      "t_sec": 0,
+      "clock": "01:19:00",
+      "pdf_power_pct": 6.0,
+      "pdf_reactivity_pct": 0.0,
+      "sim_power_pct": 100.0,
+      "diff_pct": 94.0,
+      "passed": false
+    },
+    {
+      "t_sec": 60,
+      "clock": "01:20:00",
+      "pdf_power_pct": 6.5,
+      "pdf_reactivity_pct": 0.2,
+      "sim_power_pct": 99.977,
+      "diff_pct": 93.477,
+      "passed": false
+    },
+    {
+      "t_sec": 120,
+      "clock": "01:21:00",
+      "pdf_power_pct": 7.0,
+      "pdf_reactivity_pct": 0.5,
+      "sim_power_pct": 99.954,
+      "diff_pct": 92.954,
+      "passed": false
+    },
+    {
+      "t_sec": 180,
+      "clock": "01:22:00",
+      "pdf_power_pct": 7.5,
+      "pdf_reactivity_pct": 0.8,
+      "sim_power_pct": 99.931,
+      "diff_pct": 92.431,
+      "passed": false
+    },
+    {
+      "t_sec": 210,
+      "clock": "01:22:30",
+      "pdf_power_pct": 8.0,
+      "pdf_reactivity_pct": 1.0,
+      "sim_power_pct": 99.919,
+      "diff_pct": 91.919,
+      "passed": false
+    }
+  ],
+  "simulator_params": {
+    "power_step": 0.93,
+    "t_onset": 0.0,
+    "seed": 42,
+    "BETA_TOTAL": 0.006500000000000001,
+    "XE_EQ_RAW": 644.6808510638298,
+    "I_EQ_RAW": 1044.8275862068965
+  },
+  "claims_excluded": [
+    "No prevention or counterfactual safety claim is made.",
+    "No detection-time claim is made.",
+    "This sequence is used qualitatively to illustrate model behaviour only."
+  ],
+  "cross_check_summary": {
+    "n_anchors": 5,
+    "n_passed": 0,
+    "tolerance_pct": 15.0,
+    "note": "PDF anchor values read visually from Chernobyl_dynamics_final.pdf curves A (neutron power) and B (reactivity sum). Figure is a model reconstruction, not primary instrument data."
+  }
+}
